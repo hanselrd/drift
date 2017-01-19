@@ -1,13 +1,21 @@
-'use strict';
-
 const Hapi = require('hapi');
 const Config = require('./config');
+const Api = require('./api');
 
 const server = new Hapi.Server();
 server.connection({
   host: process.env.IP || Config.server.host,
   port: process.env.PORT || Config.server.port
 });
+
+server.register([
+  require('inert'),
+  require('vision'),
+  {
+    register: require('hapi-swagger')
+  },
+  Api
+]);
 
 server.register({
   register: require('good'),
