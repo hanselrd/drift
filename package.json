@@ -7,6 +7,8 @@
     "start": "node server/main.js",
     "nodemon": "nodemon server/main.js",
     "client": "cd client && npm start",
+    "buildclient": "cd client && ng build --prod",
+    "buildclientelectron": "cd client && ng build --base-href ./ --prod",
     "electron": "cd electron && npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd client && npm install && cd ../electron && npm install"
