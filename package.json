@@ -5,6 +5,7 @@
   "main": "server/main.js",
   "scripts": {
     "start": "node server/main.js",
+    "nodemon": "nodemon server/main.js",
     "client": "cd client && npm start",
     "electron": "cd electron && npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
