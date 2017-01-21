@@ -1,2 +1,2 @@
 # drift
-Built with Angular2 and Electron
+Built using Angular2 and Electron
