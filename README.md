@@ -1,2 +1,3 @@
-# drift
-Built using Angular2 and Electron
+# Drift
+
+Built using [hapijs](https://hapijs.com), [Angular](https://angular.io) and [Electron](http://electron.atom.io)

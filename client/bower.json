@@ -1,0 +1,21 @@
+{
+  "name": "client",
+  "description": "",
+  "main": "",
+  "authors": [
+    "hanselrd <>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/hanselrd/drift",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  }
+}
