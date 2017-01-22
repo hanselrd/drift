@@ -1,9 +1,10 @@
 @echo off
+call clean.bat
 cd client &&^
-ng build --base-href ./ --prod &&^
+ng build --base-href ./ %* &&^
 cd .. &&^
-rmdir /S /Q electron\dist &&^
 move /Y client\dist electron\dist &&^
 cd client &&^
-ng build --prod &&^
-cd ..
+ng build %* &&^
+cd .. &&^
+move /Y client\dist server\public
