@@ -1,7 +1,7 @@
 @echo off
 call clean.bat
 cd client &&^
-ng build --base-href ./ %* &&^
+ng build --bh ./ %* &&^
 cd .. &&^
 move /Y client\dist electron\dist &&^
 cd client &&^
