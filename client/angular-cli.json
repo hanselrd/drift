@@ -18,7 +18,6 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "../bower_components/tether/dist/css/tether.min.css",
         "../bower_components/bootstrap/dist/css/bootstrap.min.css",
         "styles.css"
       ],

@@ -1,4 +1,3 @@
 @echo off
-rmdir /S /Q client\dist
-rmdir /S /Q electron\dist
-rmdir /S /Q server\public
+rmdir /S /Q server\public >nul 2>&1
+rmdir /S /Q electron\dist >nul 2>&1
