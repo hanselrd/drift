@@ -1,15 +1,10 @@
+const V1 = require('./v1');
+
 const Api = {
   register: (server, options, next) => {
-    server.route({
-      method: 'GET',
-      path: '/api',
-      config: {
-        handler: (request, reply) => {
-          reply({ message: 'hello' });
-        },
-        description: 'Get api root',
-        notes: 'Returns the contents at api root',
-        tags: ['api']
+    server.register(V1, err => {
+      if (err) {
+        throw err;
       }
     });
     next();
@@ -17,7 +12,7 @@ const Api = {
 };
 
 Api.register.attributes = {
-  name: 'api',
+  name: 'drift-api',
   version: '1.0.0'
 };
 
