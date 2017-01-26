@@ -1,5 +1,13 @@
 const Joi = require('joi');
+const Pwd = require('couch-pwd');
 
+/*
+ *
+ *  Testing validation
+ *  Ignore these models
+ *  and testHttpStatus
+ *
+*/
 const sumModel = Joi.object({
     id: Joi.string().required().example('x78P9c'),
     a: Joi.number().required().example(5),
@@ -35,7 +43,21 @@ module.exports = [
     method: 'GET',
     path: '/api/users',
     config: {
-      handler: (request, reply) => { reply({}); },
+      handler(request, reply) {
+        const Nano = request.server.plugins['hapi-nano'];
+        const Users = Nano.db.use('_users');
+        Users.get('org.couchdb.user:test', (err, user, header) => {
+          Pwd.hash('test', user.salt, (err, hash) => {
+            if (user.derived_key == hash)
+              console.log("We auth'd");
+            reply({
+              user: user,
+              ____hash: hash
+            });
+          });
+        });
+
+      },
       description: 'Get all users',
       notes: 'Returns all the users',
       tags: ['api']
@@ -45,7 +67,7 @@ module.exports = [
     method: 'GET',
     path: '/api/users/{id}',
     config: {
-      handler: (request, reply) => { reply(request.params); },
+      handler(request, reply) { reply(request.params); },
       description: 'Get a user',
       notes: 'Returns a user with corresponding id',
       tags: ['api'],
@@ -62,7 +84,7 @@ module.exports = [
     method: 'POST',
     path: '/api/users',
     config: {
-      handler: (request, reply) => { reply(request.payload); },
+      handler(request, reply) { reply(request.payload); },
       description: 'Creates a user',
       notes: 'Creates a user if you supply correct information',
       tags: ['api'],
@@ -89,7 +111,7 @@ module.exports = [
     method: ['PUT', 'PATCH'],
     path: '/api/users/{id}',
     config: {
-      handler: (request, reply) => { reply(request.params); },
+      handler(request, reply) { reply(request.params); },
       description: 'Updates user by id',
       notes: 'Updates user with corresponding id using information provided',
       tags: ['api']
@@ -99,7 +121,7 @@ module.exports = [
     method: 'DELETE',
     path: '/api/users/{id}',
     config: {
-      handler: (request, reply) => { reply(request.params); },
+      handler(request, reply) { reply(request.params); },
       description: 'Deletes a user by id',
       notes: 'Deletes user with corresponding id',
       tags: ['api']

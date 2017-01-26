@@ -1,5 +1,5 @@
+require('dotenv-safe').load();
 const Hapi = require('hapi');
-const Api = require('./api');
 
 const server = new Hapi.Server();
 server.connection({
@@ -11,7 +11,8 @@ server.register([
   require('inert'),
   require('vision'),
   require('hapi-plugin-router'),
-  Api
+  require('./hapi-nano'),
+  require('./api')
 ], err => {
   if (err) throw err;
 });
